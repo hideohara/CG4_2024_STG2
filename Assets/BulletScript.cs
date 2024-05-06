@@ -6,11 +6,17 @@ public class BulletScript : MonoBehaviour
 {
     public Rigidbody rb;
     float moveSpeed = 8.0f;
-    //public GameObject enemy;
+    private GameObject gameManager; // GameObjectそのものが入る変数
+    private GameManagerScript gameManagerScript; // Scriptが入る変数
+
 
     // Start is called before the first frame update
     void Start()
     {
+        // ゲームマネージャーのスクリプトを探す
+        gameManager = GameObject.Find("GameManager"); // オブジェクトの名前から探す
+        gameManagerScript = gameManager.GetComponent<GameManagerScript>(); // Scriptを取得する
+
         rb.velocity = new Vector3(0, 0, moveSpeed);
         Destroy (gameObject, 5);
     }
@@ -18,7 +24,10 @@ public class BulletScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameManagerScript.IsGameOver() == true)
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+        }
     }
 
     void OnCollisionEnter(Collision other)
@@ -28,7 +37,7 @@ public class BulletScript : MonoBehaviour
             Destroy(this.gameObject);
             Destroy(other.gameObject);
 
-            //gameManagerScript.Hit(transform.position);
+            gameManagerScript.Hit();
         }
     }
 

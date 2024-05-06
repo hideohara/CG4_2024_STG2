@@ -20,6 +20,12 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (gameManagerScript.IsGameOver()==true)
+        {
+            rb.velocity = new Vector3(0, 0, 0);
+            return;
+        }
+
         float moveSpeed = 2.0f;
         float stageMax = 4.0f;
         if (Input.GetKey(KeyCode.RightArrow))
