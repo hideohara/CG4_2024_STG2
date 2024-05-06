@@ -8,11 +8,13 @@ public class PlayerScript : MonoBehaviour
     public Animator animator;
     public GameObject bullet;
     private int bulletTimer = 0;
+    public GameObject gameManager;
+    private GameManagerScript gameManagerScript; // Script‚ª“ü‚é•Ï”
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManagerScript = gameManager.GetComponent<GameManagerScript>(); // Script‚ğæ“¾‚·‚é
     }
 
     // Update is called once per frame
@@ -62,6 +64,14 @@ public class PlayerScript : MonoBehaviour
             {
                 bulletTimer = 0;
             }
+        }
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            gameManagerScript.GameOverStart();
         }
     }
 }

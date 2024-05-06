@@ -6,6 +6,7 @@ public class BulletScript : MonoBehaviour
 {
     public Rigidbody rb;
     float moveSpeed = 8.0f;
+    //public GameObject enemy;
 
     // Start is called before the first frame update
     void Start()
@@ -19,4 +20,16 @@ public class BulletScript : MonoBehaviour
     {
         
     }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Destroy(this.gameObject);
+            Destroy(other.gameObject);
+
+            //gameManagerScript.Hit(transform.position);
+        }
+    }
+
 }

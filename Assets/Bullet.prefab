@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2702137266806207183}
+  enemy: {fileID: 4626730832194533006, guid: d27177db5c02bb34fb79278481d86e97, type: 3}
 --- !u!54 &2702137266806207183
 Rigidbody:
   m_ObjectHideFlags: 0
